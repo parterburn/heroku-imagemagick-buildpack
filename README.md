@@ -9,7 +9,7 @@ This one works was built for [**Heroku stack 20**](https://devcenter.heroku.com/
 
 The tar file in the [/build folder](./build) currently contains:
 
-Version: ImageMagick 7.1.0-25
+Version: ImageMagick 7.1.0-27
 
 You will need to build a new binary if you want to use a newer or different version. To build a new binary see [How to Build a New Binary](#how-to-build-a-new-binary)
 
@@ -20,7 +20,7 @@ You will need to build a new binary if you want to use a newer or different vers
 From your projects "Settings" tab add this buildpack to your app in the 1st position:
 
 ```bash
-https://github.com/yespark/heroku-imagemagick-buildpack
+https://github.com/parterburn/heroku-imagemagick-buildpack
 ```
 
 **NOTE:** \__To ensure the newer version of imagemagick is found in the $PATH and installed first make sure this buildpack is added to the top of the buildpack list or at "index 1"._
@@ -31,7 +31,12 @@ Since the installation is cached you might want to clean it out due to config ch
 
 ```bash
 heroku plugins:install heroku-repo
-heroku repo:purge_cache -app HEROKU_APP_NAME
+heroku repo:purge_cache --app HEROKU_APP_NAME
+```
+
+```bash
+heroku plugins:install heroku-builds
+heroku builds:cache:purge --app HEROKU_APP_NAME
 ```
 
 # How to Build a New Binary (if you want to make somes changes)
